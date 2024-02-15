@@ -92,7 +92,7 @@ def inputTensor(line):
 
 
 model = RNN(n_letters, 128, n_letters)
-model.load_state_dict(torch.load('model_q2.pkl',map_location=lambda storage, loc: storage))
+model.load_state_dict(torch.load('RNN.pkl',map_location=lambda storage, loc: storage))
 model.eval()
 
 
