@@ -5,7 +5,7 @@ This repository contains the implementation of two neural network tasks:
 Task 1: Convolutional Neural Networks (CNN)
 Create a classifier for the CIFAR10 database. You should write your own training code and satisfy the mentioned constraints. 
 The performance parameters appear below.
-This exercise aims to get you familiar with training a convolutional neural network. You should try different model architectures (different depths, filter sizes, types of pooling
+You should try different model architectures (different depths, filter sizes, types of pooling
 layers, etc.) and different hyperparameters (learning rate, batch size, etc.) to see how it affects the performance.
 Classification Network requirement:
 Write a complete training procedure for a classification network on CIFAR10 dataset.
