@@ -77,7 +77,7 @@ def evaluate_model_q1():
                                               batch_size=batch_size,
                                               shuffle=False)
     model = CNN()
-    model.load_state_dict(torch.load('model_q1.pkl',map_location=lambda storage, loc: storage))
+    model.load_state_dict(torch.load('CNN.pkl',map_location=lambda storage, loc: storage))
     model.eval()
 
     correct = 0
