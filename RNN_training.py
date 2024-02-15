@@ -209,7 +209,7 @@ def train_model_q2():
     #plt.plot(all_losses)
     loss_plot(all_losses)
 
-    torch.save(rnn.state_dict(), 'model_q2.pkl')
+    torch.save(rnn.state_dict(), 'RNN.pkl')
     return rnn.state_dict()
 
 train_model_q2()
