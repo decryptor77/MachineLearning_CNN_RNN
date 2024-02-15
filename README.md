@@ -22,3 +22,7 @@ Think about:
 - How should the input data be represented?
 - What do you predict?
 - When do you predict? At each timestep? At the end of the sequence?    
+
+
+
+Make sure you check out the "report" PDF which contains details & conclusions about the implementation.
