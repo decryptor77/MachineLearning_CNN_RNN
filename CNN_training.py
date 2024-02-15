@@ -230,7 +230,7 @@ def train_model_q1():
 
 
     # Save the Trained Model
-    torch.save(cnn.state_dict(), 'model_q1.pkl')
+    torch.save(cnn.state_dict(), 'CNN.pkl')
     return cnn.state_dict()
 
 train_model_q1()
