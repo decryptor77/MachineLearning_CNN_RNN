@@ -10,8 +10,8 @@ layers, etc.) and different hyperparameters (learning rate, batch size, etc.) to
 Classification Network requirement:
 Write a complete training procedure for a classification network on CIFAR10 dataset.
 Design and train your network so that it will satisfy the 2 following goals:
-a. Final accuracy on the test set should be > 80%
-b. The number of trainable parameters (weights) should be less than 50,000.
+  - Final accuracy on the test set should be > 80%.
+  - The number of trainable parameters (weights) should be less than 50,000.
 
   The CIFAR-10 dataset (Canadian Institute For Advanced Research) is a collection of images that are commonly used to train machine learning and computer vision algorithms. It is one of the most widely used     
   datasets for machine learning research. The CIFAR-10 dataset contains 60,000 32x32 color images in 10 different classes. The 10 different classes represent airplanes, cars, birds, cats, deer, dogs, frogs,
