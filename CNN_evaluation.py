@@ -8,7 +8,7 @@ import numpy as np
 
 batch_size = 50
 
-
+# Function to initialize weights
 def weights_init(m):
     classname = m.__class__.__name__
     if classname.find('Conv') != -1:
@@ -57,6 +57,7 @@ class CNN(nn.Module):
         out = self.fc(out)
         return self.logsoftmax(out)
 
+# Function to evaluate the model
 def evaluate_model_q1():
     #Image Preprocessing
     test_transform = transforms.Compose([
@@ -95,4 +96,5 @@ def evaluate_model_q1():
     print('Error percentage of the model on the 10000 test images: %.3f %%' % (100-(100 * correct / total)))
     return 100-(100 * correct / total)
 
+# Call the evaluation function
 evaluate_model_q1()
