@@ -1,3 +1,4 @@
+# Importing necessary libraries
 import torch
 import torch.nn as nn
 import torchvision.datasets as dsets
@@ -19,6 +20,7 @@ transform = transforms.Compose([
                          (0.247, 0.2434, 0.2615)),
 ])
 
+# Perform data augmentation on the training set
 train_transform = transforms.Compose([
     transforms.RandomHorizontalFlip(p=0.5),
     transforms.RandomCrop(32, padding=4),
@@ -28,6 +30,7 @@ train_transform = transforms.Compose([
                          (0.247, 0.2434, 0.2615)),
 ])
 
+# Transformation for testing data
 test_transform = transforms.Compose([
     transforms.ToTensor(),
     transforms.Normalize((0.4914, 0.4822, 0.4465),
@@ -37,6 +40,7 @@ test_transform = transforms.Compose([
 
 
 # CIFAR-10 Dataset
+# Load CIFAR-10 dataset with different transformations for training and testing
 train_dataset_original = dsets.CIFAR10(root='./data/',
                                train=True,
                                transform=transform,
@@ -45,7 +49,9 @@ train_dataset_aug = dsets.CIFAR10(root='./data/',
                                train=True,
                                transform=train_transform,
                                download=True)
+# Concatenate original and augmented datasets for training
 train_dataset = torch.utils.data.ConcatDataset([train_dataset_original, train_dataset_aug])
+# Load testing dataset
 test_dataset = dsets.CIFAR10(root='./data/',
                               train=False,
                               transform=test_transform,
@@ -54,6 +60,7 @@ test_dataset = dsets.CIFAR10(root='./data/',
 
 
 # Data Loader (Input Pipeline)
+# Define data loaders for training and testing datasets
 train_loader = torch.utils.data.DataLoader(dataset=train_dataset,
                                            batch_size=batch_size,
                                            shuffle=True)
@@ -62,7 +69,7 @@ test_loader = torch.utils.data.DataLoader(dataset=test_dataset,
                                           batch_size=batch_size,
                                           shuffle=False)
 
-
+# Function to plot train and test error
 def error_plot(train_error, test_error):
     plt.xticks(np.arange(0, 101, 1))
     plt.yticks(np.arange(0, 101, 1))
@@ -77,6 +84,7 @@ def error_plot(train_error, test_error):
     plt.show
     plt.savefig("plot_error_q1.png")
 
+# Function to plot train and test loss
 def loss_plot(train_loss, test_loss):
     plt.xticks(np.arange(0, 101, 1))
     plt.yticks(np.arange(0, 101, 1))
@@ -91,6 +99,7 @@ def loss_plot(train_loss, test_loss):
     plt.show
     plt.savefig("plot_loss_q1.png")
 
+# Function to initialize weights
 def weights_init(m):
     classname = m.__class__.__name__
     if classname.find('Conv') != -1:
@@ -102,6 +111,7 @@ def weights_init(m):
     # elif classname.find('BatchNorm') != -1:
     #     nn.init.xavier_uniform_(m.weight)
 
+# Define the CNN architecture
 k = 82
 class CNN(nn.Module):
     def __init__(self):
@@ -138,7 +148,7 @@ class CNN(nn.Module):
         out = self.fc(out)
         return self.logsoftmax(out)
 
-
+# Function to train the model
 def train_model_q1():
     cnn = CNN()
     cnn.apply(weights_init)
@@ -206,7 +216,8 @@ def train_model_q1():
             test_error.append(100-(100 * correct / total))                #error_calc
             print('Test Accuracy of the model on the 10000 test images: %.3f %%' % (100 * correct / total))
         cnn.train()
-
+        
+    # Evaluate model on test set after training
     cnn.eval()
     correct = 0
     total = 0
@@ -233,4 +244,5 @@ def train_model_q1():
     torch.save(cnn.state_dict(), 'CNN.pkl')
     return cnn.state_dict()
 
+# Call the training function
 train_model_q1()
